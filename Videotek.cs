@@ -37,7 +37,6 @@ class Videotek
                 break;
             case 3:
                 ExitGame();
-
                 break;
         }
 
