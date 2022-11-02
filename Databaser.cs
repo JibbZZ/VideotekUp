@@ -1,6 +1,6 @@
 class Databas
 {
-    public int id { get; set; }
+    /*public int id { get; set; }
     public string name { get; set; }
     public string eMail { get; set; }
     public int phoneNumber { get; set; }
@@ -16,6 +16,6 @@ class Databas
     public override string ToString()
     {
         return $"{id} {name}";
-    }
+    }*/
 
 }

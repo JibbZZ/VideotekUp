@@ -1,8 +1,9 @@
 using Dapper;
 using MySqlConnector;
+
 class Videotek
 {
-    public int id { get; set; }
+    /*public int id { get; set; }
     public string name { get; set; }
     public string eMail { get; set; }
     public int phoneNumber { get; set; }
@@ -13,7 +14,8 @@ class Videotek
     public int minutes { get; set; }
     public int serialNumber { get; set; }
     public int price { get; set; }
-    public string director { get; set; }
+    public string director { get; set; }*/
+    
     public void Start()
     {
 
@@ -55,10 +57,10 @@ class Videotek
 
             using (var connection = new MySqlConnection("Server=localhost;Database=videotek;Uid=root;"))
             {
-                var movies = connection.Query<Videotek>("SELECT title FROM Movies").ToList();
-                foreach (Videotek m in movies)
+                var movies = connection.Query<Movie>("SELECT title FROM Movies").ToList();
+                foreach (Movie m in movies)
                 {
-                    Console.WriteLine(m.title );
+                    Console.WriteLine(m.title);
                 }
             }
 
@@ -77,8 +79,8 @@ class Videotek
 
         using (var connection = new MySqlConnection("Server=localhost;Database=videotek;Uid=root;"))
         {
-            var users = connection.Query<Videotek>("SELECT id, name, eMail, phoneNumber, city, postalCode FROM Users;").ToList();
-            foreach (Videotek u in users)
+            var users = connection.Query<User>("SELECT id, name, eMail, phoneNumber, city, postalCode FROM Users;").ToList();
+            foreach (User u in users)
             {
                 Console.WriteLine(u.id + "  " + u.name + " " + u.eMail + " " + u.phoneNumber + " " + u.city + " " + u.postalCode);
             }
