@@ -1,9 +1,6 @@
 using static System.Console;
-using System;
 using System.Drawing;
 using Console = Colorful.Console;
-using Dapper;
-using MySqlConnector;
 class Menu
 
 {
