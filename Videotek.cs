@@ -2,20 +2,7 @@ using Dapper;
 using MySqlConnector;
 
 class Videotek
-{
-    /*public int id { get; set; }
-    public string name { get; set; }
-    public string eMail { get; set; }
-    public int phoneNumber { get; set; }
-    public string city { get; set; }
-    public int postalCode { get; set; }
-    public string title { get; set; }
-    public int Year { get; set; }
-    public int minutes { get; set; }
-    public int serialNumber { get; set; }
-    public int price { get; set; }
-    public string director { get; set; }*/
-    
+{    
     public void Start()
     {
 
@@ -33,7 +20,7 @@ class Videotek
                 RentMovies();
                 break;
             case 2:
-                ShowProfile();
+                ShowMember();
                 break;
             case 3:
                 ExitGame();
@@ -52,28 +39,27 @@ class Videotek
     private void ListMovies()
 
     {
-        {
-
-            using (var connection = new MySqlConnection("Server=localhost;Database=videotek;Uid=root;"))
+         using (var connection = new MySqlConnection("Server=localhost;Database=videotek;Uid=root;"))
+         {
+            var movies = connection.Query<Movie>("SELECT title FROM Movies").ToList();
+            foreach (Movie m in movies)
             {
-                var movies = connection.Query<Movie>("SELECT title FROM Movies").ToList();
-                foreach (Movie m in movies)
-                {
-                    Console.WriteLine(m.title);
-                }
+                Console.WriteLine(m.title);
             }
-
-        }
-
+         }
     }
     private void RentMovies()
     {
-
-
-
-
+        using (var connection = new MySqlConnection("Server=localhost;Database=videotek;Uid=root;"))
+        {
+            var order = connection.Query<Order>("SELECT id, user_id, movie_id, rent_date (dd/mm/yy) FROM Orders").ToList();
+            foreach (Order o in order)
+            {
+                Console.WriteLine("ID: " + o.id + ", " + "User ID: "+ o.user_id + ", " + "Movie ID: " + o.movie_id + ", " + "Rented at: " + o.rent_date);
+            }
+        }
     }
-    private void ShowProfile()
+    private void ShowMember()
     {
 
         using (var connection = new MySqlConnection("Server=localhost;Database=videotek;Uid=root;"))
@@ -81,7 +67,7 @@ class Videotek
             var users = connection.Query<User>("SELECT id, name, eMail, phoneNumber, city, postalCode FROM Users;").ToList();
             foreach (User u in users)
             {
-                Console.WriteLine(u.id + "  " + u.name + " " + u.eMail + " " + u.phoneNumber + " " + u.city + " " + u.postalCode);
+                Console.WriteLine("ID: " + u.id + ", " + "Name: " + u.name + ", " + "Email: " + u.eMail + ", " + "Phonenumber: " + u.phoneNumber + ", " + "City: " + u.city + ", " + "Postal code: " + u.postalCode);
             }
         }
 
