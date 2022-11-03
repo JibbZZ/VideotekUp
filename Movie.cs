@@ -1,11 +1,5 @@
-class Databas
+public class Movie
 {
-    public int id { get; set; }
-    public string name { get; set; }
-    public string eMail { get; set; }
-    public int phoneNumber { get; set; }
-    public string city { get; set; }
-    public int postalCode { get; set; }
     public string title { get; set; }
     public int Year { get; set; }
     public int minutes { get; set; }
@@ -15,7 +9,6 @@ class Databas
 
     public override string ToString()
     {
-        return $"{id} {name}";
+        return $"{title} {Year} {minutes} {serialNumber} {price} {director}";
     }
-
 }
